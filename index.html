@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KAVA - Menu | Tyre Seaside</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#F4EFE6;color:#1A2F4A;font-family:'Poppins',sans-serif}
+.hero{text-align:center;padding:42px 16px 24px;background:linear-gradient(180deg,#F4EFE6,#EDE6D6)}
+.hero h1{font-family:'Playfair Display',serif;font-size:72px;letter-spacing:14px;text-indent:14px;line-height:1;color:#1A2F4A}
+.hero p{font-size:11px;letter-spacing:4px;color:#5A7A9A;margin-top:8px;font-weight:600}
+.hero span{display:inline-block;margin-top:10px;font-size:11px;letter-spacing:2px;background:#1A2F4A;color:#fff;padding:7px 16px;border-radius:20px}
+.sticky{position:sticky;top:0;z-index:100;background:rgba(244,239,230,.97);backdrop-filter:blur(12px);padding:14px 0 0;border-bottom:1px solid rgba(26,47,74,.15)}
+.main-tabs{display:flex;gap:12px;justify-content:center;padding:0 16px 14px;max-width:600px;margin:auto}
+.main-tabs button{flex:1;background:#fff;border:2px solid #1A2F4A;color:#1A2F4A;cursor:pointer;border-radius:16px;padding:14px 10px;font-family:'Playfair Display',serif;font-size:20px;font-weight:700}
+.main-tabs button small{display:block;font-family:'Poppins',sans-serif;font-size:11px;font-weight:400;color:#5A7A9A;margin-top:2px}
+.main-tabs button.active{background:#1A2F4A;color:#fff;box-shadow:0 10px 25px rgba(26,47,74,.25)}
+.main-tabs button.active small{color:#CDE0F0}
+.sub-tabs{display:none;gap:0;padding:0 12px;max-width:1000px;margin:auto;overflow-x:auto;scrollbar-width:none;border-top:1px solid rgba(26,47,74,.1)}
+.sub-tabs.show{display:flex}
+.sub-tabs::-webkit-scrollbar{display:none}
+.sub-tabs button{flex-shrink:0;background:transparent;border:none;color:#7A8A9A;cursor:pointer;font-family:'Playfair Display',serif;font-size:16px;font-weight:600;padding:15px 14px 13px;white-space:nowrap;position:relative}
+.sub-tabs button::after{content:'';position:absolute;left:14px;right:14px;bottom:0;height:3px;background:#1A2F4A;border-radius:10px;transform:scaleX(0);transition:.25s}
+.sub-tabs button.active{color:#1A2F4A}
+.sub-tabs button.active::after{transform:scaleX(1)}
+.section-title{text-align:center;margin:26px 0 8px;padding:0 16px}
+.section-title h2{font-family:'Playfair Display',serif;font-size:32px;color:#1A2F4A}
+.section-title p{font-size:12px;color:#5A7A9A;margin-top:4px;letter-spacing:1px}
+.list{max-width:820px;margin:10px auto 30px;padding:0 20px}
+.list-head{display:flex;justify-content:flex-end;gap:24px;font-size:10px;letter-spacing:1px;color:#5A7A9A;font-weight:700;padding:0 4px 8px;border-bottom:1px solid rgba(26,47,74,.2)}
+.list-head span{width:90px;text-align:right}
+.item{padding:16px 4px;border-bottom:1px solid rgba(26,47,74,.12);display:flex;justify-content:space-between;gap:16px;align-items:flex-start}
+.item h3{font-family:'Playfair Display',serif;font-size:19px;line-height:1.2}
+.item p{font-size:12px;color:#5A7A9A;line-height:1.5;margin-top:4px}
+.prices{display:flex;gap:24px;flex-shrink:0;text-align:right}
+.prices div{width:90px}
+.prices b{display:block;font-size:15px;color:#1A2F4A}
+.prices small{display:block;font-size:11px;color:#5A7A9A;margin-top:2px}
+.single-price{text-align:right;flex-shrink:0}
+.single-price b{font-size:17px}
+.single-price small{display:block;font-size:11px;color:#5A7A9A;margin-top:2px}
+.tag{display:inline-block;background:#E8F0F7;color:#1A2F4A;font-size:10px;font-weight:700;letter-spacing:1px;padding:3px 8px;border-radius:10px;margin-bottom:6px}
+.note{max-width:820px;margin:0 auto 30px;padding:0 20px;font-size:11px;color:#8A9AA8;text-align:center;line-height:1.6}
+@media(max-width:650px){.hero h1{font-size:52px;letter-spacing:8px}.list-head span,.prices div{width:76px}.prices{gap:12px}.item h3{font-size:17px}.prices b{font-size:13px}}
+.footer{max-width:820px;margin:0 auto 24px;text-align:center;background:#1A2F4A;color:#fff;padding:26px;border-radius:20px}
+.footer a{display:inline-block;background:#fff;color:#1A2F4A;padding:12px 26px;border-radius:30px;text-decoration:none;font-weight:700;margin-top:14px}
+.btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+.btns a{margin:0}
+</style>
+</head>
+<body>
+<div class="hero">
+<h1>KAVA</h1>
+<p>PRICES IN LBP • CALORIES IN KCAL</p>
+<span>FRESH DAILY • MADE TO ORDER</span>
+</div>
+<div class="sticky">
+<div class="main-tabs">
+<button class="active" onclick="showMain('food',this)">FOOD<small>Appetizers • Salads • Sandwiches</small></button>
+<button onclick="showMain('drinks',this)">DRINKS<small>Coffee • Frappés • Shakes</small></button>
+</div>
+<div class="sub-tabs show" id="foodSub">
+<button class="active" onclick="filterItems('appetizers',this)">Appetizers</button>
+<button onclick="filterItems('salads',this)">Salads</button>
+<button onclick="filterItems('sandwiches',this)">Sandwiches</button>
+<button onclick="filterItems('bruschetta',this)">Bruschetta</button>
+</div>
+<div class="sub-tabs" id="drinkSub">
+<button class="active" onclick="filterItems('pure',this)">Pure Coffee</button>
+<button onclick="filterItems('hot',this)">Hot Classics</button>
+<button onclick="filterItems('iced',this)">Iced Classics</button>
+<button onclick="filterItems('frappes',this)">Frappés</button>
+<button onclick="filterItems('shakes',this)">Milkshakes</button>
+<button onclick="filterItems('refreshers',this)">Refreshers</button>
+<button onclick="filterItems('protein',this)">Protein & Fit</button>
+<button onclick="filterItems('tea',this)">Tea</button>
+<button onclick="filterItems('extras',this)">Syrups & Extras</button>
+</div>
+</div>
+<div class="section-title"><h2 id="catTitle">Appetizers</h2><p id="catDesc">Fresh Daily • Made To Order</p></div>
+<div id="menuGrid"></div>
+<p class="note">Calorie values are estimates based on standard recipe build - see full breakdown for methodology.</p>
+<div class="footer">
+<h3 style="font-family:'Playfair Display',serif;font-size:24px">KAVA ☕</h3>
+<p style="margin-top:10px;opacity:.9;line-height:1.7">📍 Tyre Seaside, Lebanon<br>Fresh Daily • Made To Order</p>
+<div class="btns">
+<a href="https://instagram.com/kavacoffeeandmore">📸 @kavacoffeeandmore</a>
+<a href="https://www.google.com/maps?q=Kava+Tyre+Seaside" style="background:#E8F0F7">📍 DIRECTIONS</a>
+</div>
+<p style="font-size:11px;opacity:.6;margin-top:14px">@kavacoffeeandmore</p>
+</div>
+<script>
+const titles={
+appetizers:['Appetizers','Fresh Daily • Made To Order'],
+salads:['Salads','Fresh & Healthy'],
+sandwiches:['Sandwiches','Ciabatta or Brown Bread'],
+bruschetta:['Bruschetta','Fresh & Crispy'],
+pure:['Pure Coffee','Pure • Strong • Real'],
+hot:['Hot Classics','Warm & Comforting'],
+iced:['Iced Classics','Cold & Refreshing'],
+frappes:['Frappés','Blended & Icy'],
+shakes:['Milkshakes','Thick & Creamy'],
+refreshers:['Refreshers','Fresh & Sparkling'],
+protein:['Protein & Fit','High Protein • Low Sugar'],
+tea:['Tea','Hot & Iced'],
+extras:['Syrups, Sauces & Extras','Customize Your Drink']
+};
+const items=[
+{cat:'appetizers',name:'Fig & Chèvre Crostini',desc:'10 pieces • ~590 kcal • 20g protein',price:'585,000 LBP',single:true},
+{cat:'appetizers',name:'Turkey Caprese Crostini',desc:'10 pieces • ~670 kcal • 18g protein',price:'630,000 LBP',single:true},
+{cat:'salads',name:'Chicken Caesar Salad',desc:'700 kcal • 45g protein',price:'1,260,000 LBP',single:true},
+{cat:'salads',name:'Chicken Avocado Salad',desc:'420 kcal • 54g protein',price:'1,350,000 LBP',single:true},
+{cat:'salads',name:'Greek Salad',desc:'220 kcal • 32g protein',price:'900,000 LBP',single:true},
+{cat:'salads',name:'Goat Cheese Salad',desc:'410 kcal • 27g protein',price:'1,260,000 LBP',single:true},
+{cat:'sandwiches',name:'Halloumi Sandwich',desc:'Ciabatta 625 kcal / Brown 610 kcal • 22g protein',price:'900,000 LBP',single:true},
+{cat:'sandwiches',name:'Turkey Pesto Sandwich',desc:'Ciabatta 400 kcal / Brown 350 kcal • 16g protein',price:'855,000 LBP',single:true},
+{cat:'sandwiches',name:'Chicken Avocado Sandwich',desc:'Ciabatta 675 kcal / Brown 650 kcal • 45g protein',price:'1,080,000 LBP',single:true},
+{cat:'bruschetta',name:'Bruschetta Salmon',desc:'270 kcal • 44g protein',price:'1,350,000 LBP',single:true},
+{cat:'bruschetta',name:'Bruschetta Caprese',desc:'260 kcal • 24g protein',price:'900,000 LBP',single:true},
+{cat:'bruschetta',name:'Bruschetta Avocado & Eggs',desc:'400 kcal • 17g protein',price:'810,000 LBP',single:true},
+{cat:'bruschetta',name:'Bruschetta Ashta',desc:'275 kcal • 12g protein',price:'990,000 LBP',single:true},
+{cat:'pure',name:'Espresso — Single',desc:'2 kcal',price:'200,000 LBP',single:true},
+{cat:'pure',name:'Espresso — Doppio',desc:'4 kcal',price:'250,000 LBP',single:true},
+{cat:'pure',name:'Longo',desc:'4 kcal',price:'250,000 LBP',single:true},
+{cat:'pure',name:'Espresso Macchiato',desc:'13 kcal',price:'300,000 LBP',single:true},
+{cat:'pure',name:'Americano',desc:'4 kcal / 6 kcal',priceS:'300,000',priceM:'350,000',calS:'4 kcal',calM:'6 kcal'},
+{cat:'pure',name:'American Coffee',desc:'6 kcal / 6 kcal',priceS:'300,000',priceM:'350,000',calS:'6 kcal',calM:'6 kcal'},
+{cat:'pure',name:'V60',desc:'2 kcal / 2 kcal',priceS:'350,000',priceM:'400,000',calS:'2 kcal',calM:'2 kcal'},
+{cat:'pure',name:'French Press',desc:'2 kcal / 2 kcal',priceS:'300,000',priceM:'350,000',calS:'2 kcal',calM:'2 kcal'},
+{cat:'hot',name:'Flat White',desc:'~130 kcal',price:'450,000 LBP',single:true},
+{cat:'hot',name:'Latte',desc:'276 kcal / 380 kcal',priceS:'450,000',priceM:'550,000',calS:'276 kcal',calM:'380 kcal'},
+{cat:'hot',name:'Cappuccino',desc:'197 kcal / 252 kcal',priceS:'450,000',priceM:'550,000',calS:'197 kcal',calM:'252 kcal'},
+{cat:'hot',name:'Hot Double Shot',desc:'386 kcal / 495 kcal',priceS:'500,000',priceM:'600,000',calS:'386 kcal',calM:'495 kcal'},
+{cat:'hot',name:'Toffeenut Latte',desc:'278 kcal / 360 kcal',priceS:'550,000',priceM:'700,000',calS:'278 kcal',calM:'360 kcal'},
+{cat:'hot',name:'Mocha',desc:'335 kcal / 438 kcal',priceS:'550,000',priceM:'650,000',calS:'335 kcal',calM:'438 kcal'},
+{cat:'hot',name:'White Mocha',desc:'335 kcal / 438 kcal',priceS:'550,000',priceM:'650,000',calS:'335 kcal',calM:'438 kcal'},
+{cat:'hot',name:'Caramel Macchiato',desc:'291 kcal / 333 kcal',priceS:'500,000',priceM:'600,000',calS:'291 kcal',calM:'333 kcal'},
+{cat:'hot',name:'Hot Kava',desc:'384 kcal / 543 kcal',priceS:'550,000',priceM:'700,000',calS:'384 kcal',calM:'543 kcal',tag:'SIGNATURE'},
+{cat:'hot',name:'Hot Chocolate',desc:'301 kcal / 490 kcal',priceS:'550,000',priceM:'700,000',calS:'301 kcal',calM:'490 kcal'},
+{cat:'hot',name:'Matcha — Hot',desc:'245 kcal / 332 kcal',priceS:'550,000',priceM:'700,000',calS:'245 kcal',calM:'332 kcal'},
+{cat:'iced',name:'Iced Latte',desc:'85 kcal / 103 kcal',priceS:'400,000',priceM:'500,000',calS:'85 kcal',calM:'103 kcal'},
+{cat:'iced',name:'Iced Spanish Latte',desc:'203 kcal / 248 kcal',priceS:'450,000',priceM:'600,000',calS:'203 kcal',calM:'248 kcal'},
+{cat:'iced',name:'Iced White Mocha',desc:'203 kcal / 248 kcal',priceS:'450,000',priceM:'600,000',calS:'203 kcal',calM:'248 kcal'},
+{cat:'iced',name:'Iced Mocha',desc:'203 kcal / 248 kcal',priceS:'450,000',priceM:'600,000',calS:'203 kcal',calM:'248 kcal'},
+{cat:'iced',name:'Iced Toffeenut Latte',desc:'176 kcal / 210 kcal',priceS:'450,000',priceM:'600,000',calS:'176 kcal',calM:'210 kcal'},
+{cat:'iced',name:'Iced Caramel Macchiato',desc:'199 kcal / 203 kcal',priceS:'450,000',priceM:'600,000',calS:'199 kcal',calM:'203 kcal'},
+{cat:'iced',name:'Double Shot Iced Shaken',desc:'154 kcal / 168 kcal',priceS:'450,000',priceM:'600,000',calS:'154 kcal',calM:'168 kcal'},
+{cat:'iced',name:'Iced Chocolate',desc:'249 kcal / 315 kcal',priceS:'550,000',priceM:'700,000',calS:'249 kcal',calM:'315 kcal'},
+{cat:'iced',name:'Matcha — Iced',desc:'140 kcal / 183 kcal',priceS:'550,000',priceM:'700,000',calS:'140 kcal',calM:'183 kcal'},
+{cat:'iced',name:'Iced Kava',desc:'229 kcal / 277 kcal',priceS:'550,000',priceM:'700,000',calS:'229 kcal',calM:'277 kcal',tag:'SIGNATURE'},
+{cat:'frappes',name:'Caramel',desc:'384 kcal / 445 kcal',priceS:'500,000',priceM:'600,000',calS:'384 kcal',calM:'445 kcal'},
+{cat:'frappes',name:'Mocha',desc:'367 kcal / 491 kcal',priceS:'500,000',priceM:'600,000',calS:'367 kcal',calM:'491 kcal'},
+{cat:'frappes',name:'White Mocha',desc:'312 kcal / 436 kcal',priceS:'500,000',priceM:'600,000',calS:'312 kcal',calM:'436 kcal'},
+{cat:'frappes',name:'Hazelnut',desc:'323 kcal / 425 kcal',priceS:'500,000',priceM:'600,000',calS:'323 kcal',calM:'425 kcal'},
+{cat:'frappes',name:'Vanilla',desc:'325 kcal / 425 kcal',priceS:'500,000',priceM:'600,000',calS:'325 kcal',calM:'425 kcal'},
+{cat:'frappes',name:'Espresso',desc:'293 kcal / 360 kcal',priceS:'500,000',priceM:'600,000',calS:'293 kcal',calM:'360 kcal'},
+{cat:'frappes',name:'Dulce de Leche',desc:'385 kcal / 434 kcal',priceS:'600,000',priceM:'700,000',calS:'385 kcal',calM:'434 kcal'},
+{cat:'frappes',name:'Toffeenut',desc:'323 kcal / 425 kcal',priceS:'500,000',priceM:'600,000',calS:'323 kcal',calM:'425 kcal'},
+{cat:'frappes',name:'Kava Frappé',desc:'490 kcal / 673 kcal',priceS:'600,000',priceM:'700,000',calS:'490 kcal',calM:'673 kcal',tag:'SIGNATURE'},
+{cat:'shakes',name:'Lotus',desc:'611 kcal / 898 kcal',priceS:'450,000',priceM:'550,000',calS:'611 kcal',calM:'898 kcal'},
+{cat:'shakes',name:'Oreo',desc:'571 kcal / 778 kcal',priceS:'450,000',priceM:'550,000',calS:'571 kcal',calM:'778 kcal'},
+{cat:'shakes',name:'Chocolate',desc:'442 kcal / 588 kcal',priceS:'600,000',priceM:'750,000',calS:'442 kcal',calM:'588 kcal'},
+{cat:'shakes',name:'Vanilla',desc:'257 kcal / 309 kcal',priceS:'450,000',priceM:'550,000',calS:'257 kcal',calM:'309 kcal'},
+{cat:'shakes',name:'Strawberry',desc:'422 kcal / 545 kcal',priceS:'600,000',priceM:'750,000',calS:'422 kcal',calM:'545 kcal'},
+{cat:'shakes',name:'Caramel',desc:'376 kcal / 478 kcal',priceS:'450,000',priceM:'550,000',calS:'376 kcal',calM:'478 kcal'},
+{cat:'shakes',name:'Kava Milkshake',desc:'551 kcal / 728 kcal',priceS:'650,000',priceM:'800,000',calS:'551 kcal',calM:'728 kcal',tag:'SIGNATURE'},
+{cat:'refreshers',name:'Strawberry Sparkle',desc:'224 kcal / 281 kcal',priceS:'500,000',priceM:'650,000',calS:'224 kcal',calM:'281 kcal'},
+{cat:'refreshers',name:'Lemon Mint Breeze',desc:'222 kcal / 285 kcal',priceS:'500,000',priceM:'650,000',calS:'222 kcal',calM:'285 kcal'},
+{cat:'refreshers',name:'Orange Mango',desc:'92 kcal / 110 kcal',priceS:'500,000',priceM:'650,000',calS:'92 kcal',calM:'110 kcal'},
+{cat:'refreshers',name:'Blueberry Lemonade',desc:'254 kcal / 317 kcal',priceS:'650,000',priceM:'750,000',calS:'254 kcal',calM:'317 kcal'},
+{cat:'protein',name:'Protein Shake',desc:'Vanilla, Chocolate or Coffee build • 213-260 kcal • 31g protein / 244-300 kcal • 42g protein',priceS:'450,000',priceM:'600,000',calS:'31g protein',calM:'42g protein',tag:'HIGH PROTEIN'},
+{cat:'protein',name:'Low Sugar Iced Coffee',desc:'Vanilla or Caramel • 96 kcal / 102 kcal',priceS:'400,000',priceM:'550,000',calS:'96 kcal',calM:'102 kcal',tag:'LOW SUGAR'},
+{cat:'tea',name:'Hot Tea — Flavored',desc:'2 kcal',price:'350,000 LBP',single:true},
+{cat:'tea',name:'Iced Tea Classic',desc:'Unsweetened • ~9 kcal • 99 kcal / 135 kcal',priceS:'400,000',priceM:'550,000',calS:'99 kcal',calM:'135 kcal'},
+{cat:'tea',name:'Iced Tea — Lemonade',desc:'184 kcal / 273 kcal',priceS:'400,000',priceM:'550,000',calS:'184 kcal',calM:'273 kcal'},
+{cat:'tea',name:'Iced Tea — Peach or Mango',desc:'99 kcal / 132 kcal',priceS:'400,000',priceM:'550,000',calS:'99 kcal',calM:'132 kcal'},
+{cat:'extras',name:'Any syrup pump (Monin)',desc:'~25 kcal per pump',price:'100,000 LBP',single:true},
+{cat:'extras',name:'Any sauce / purée pump (Monin)',desc:'~35 kcal per 15ml pump',price:'100,000 LBP',single:true},
+{cat:'extras',name:'Extra Shot',desc:'',price:'50,000 LBP',single:true},
+{cat:'extras',name:'Whipped Cream',desc:'~50 kcal',price:'50,000 LBP',single:true},
+{cat:'extras',name:'Caramel / Chocolate Drizzle',desc:'~20 kcal',price:'100,000 LBP',single:true},
+{cat:'extras',name:'Milk Alternatives',desc:'Oat, Almond, Soya, Coconut — calories vary',price:'150,000 LBP',single:true},
+];
+let cur='appetizers';
+function render(){
+document.getElementById('catTitle').innerText=titles[cur][0];
+document.getElementById('catDesc').innerText=titles[cur][1];
+let list=items.filter(i=>i.cat===cur);
+let hasSize=list.some(i=>!i.single);
+let head=hasSize?`<div class="list-head"><span>SMALL</span><span>MEDIUM</span></div>`:'';
+document.getElementById('menuGrid').innerHTML='<div class="list">'+head+list.map(i=>{
+if(i.single) return `<div class="item"><div><h3>${i.name}</h3><p>${i.desc}</p></div><div class="single-price"><b>${i.price}</b></div></div>`;
+return `<div class="item"><div>${i.tag?`<span class="tag">${i.tag}</span><br>`:''}<h3>${i.name}</h3><p>${i.desc}</p></div><div class="prices"><div><b>${i.priceS}</b><small>${i.calS}</small></div><div><b>${i.priceM}</b><small>${i.calM}</small></div></div></div>`;
+}).join('')+'</div>';
+}
+function filterItems(c,b){cur=c;let p=b.parentElement.id;document.querySelectorAll('#'+p+' button').forEach(x=>x.classList.remove('active'));b.classList.add('active');render()}
+function showMain(main,btn){
+document.querySelectorAll('.main-tabs button').forEach(x=>x.classList.remove('active'));btn.classList.add('active');
+document.getElementById('foodSub').classList.remove('show');document.getElementById('drinkSub').classList.remove('show');
+if(main==='food'){document.getElementById('foodSub').classList.add('show');cur='appetizers';document.querySelectorAll('#foodSub button').forEach((x,i)=>x.classList.toggle('active',i===0));}
+else{document.getElementById('drinkSub').classList.add('show');cur='pure';document.querySelectorAll('#drinkSub button').forEach((x,i)=>x.classList.toggle('active',i===0));}
+render();
+}
+render();
+</script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KAVA - Menu | Tyre Seaside</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#F4EFE6;color:#1A2F4A;font-family:'Poppins',sans-serif}
+.hero{text-align:center;padding:42px 16px 24px;background:linear-gradient(180deg,#F4EFE6,#EDE6D6)}
+.hero h1{font-family:'Playfair Display',serif;font-size:72px;letter-spacing:14px;text-indent:14px;line-height:1;color:#1A2F4A}
+.hero p{font-size:11px;letter-spacing:4px;color:#5A7A9A;margin-top:8px;font-weight:600}
+.hero span{display:inline-block;margin-top:10px;font-size:11px;letter-spacing:2px;background:#1A2F4A;color:#fff;padding:7px 16px;border-radius:20px}
+.sticky{position:sticky;top:0;z-index:100;background:rgba(244,239,230,.97);backdrop-filter:blur(12px);padding:14px 0 0;border-bottom:1px solid rgba(26,47,74,.15)}
+.main-tabs{display:flex;gap:12px;justify-content:center;padding:0 16px 14px;max-width:600px;margin:auto}
+.main-tabs button{flex:1;background:#fff;border:2px solid #1A2F4A;color:#1A2F4A;cursor:pointer;border-radius:16px;padding:14px 10px;font-family:'Playfair Display',serif;font-size:20px;font-weight:700}
+.main-tabs button small{display:block;font-family:'Poppins',sans-serif;font-size:11px;font-weight:400;color:#5A7A9A;margin-top:2px}
+.main-tabs button.active{background:#1A2F4A;color:#fff;box-shadow:0 10px 25px rgba(26,47,74,.25)}
+.main-tabs button.active small{color:#CDE0F0}
+.sub-tabs{display:none;gap:0;padding:0 12px;max-width:1000px;margin:auto;overflow-x:auto;scrollbar-width:none;border-top:1px solid rgba(26,47,74,.1)}
+.sub-tabs.show{display:flex}
+.sub-tabs::-webkit-scrollbar{display:none}
+.sub-tabs button{flex-shrink:0;background:transparent;border:none;color:#7A8A9A;cursor:pointer;font-family:'Playfair Display',serif;font-size:16px;font-weight:600;padding:15px 14px 13px;white-space:nowrap;position:relative}
+.sub-tabs button::after{content:'';position:absolute;left:14px;right:14px;bottom:0;height:3px;background:#1A2F4A;border-radius:10px;transform:scaleX(0);transition:.25s}
+.sub-tabs button.active{color:#1A2F4A}
+.sub-tabs button.active::after{transform:scaleX(1)}
+.section-title{text-align:center;margin:26px 0 8px;padding:0 16px}
+.section-title h2{font-family:'Playfair Display',serif;font-size:32px;color:#1A2F4A}
+.section-title p{font-size:12px;color:#5A7A9A;margin-top:4px;letter-spacing:1px}
+.list{max-width:820px;margin:10px auto 30px;padding:0 20px}
+.list-head{display:flex;justify-content:flex-end;gap:24px;font-size:10px;letter-spacing:1px;color:#5A7A9A;font-weight:700;padding:0 4px 8px;border-bottom:1px solid rgba(26,47,74,.2)}
+.list-head span{width:90px;text-align:right}
+.item{padding:16px 4px;border-bottom:1px solid rgba(26,47,74,.12);display:flex;justify-content:space-between;gap:16px;align-items:flex-start}
+.item h3{font-family:'Playfair Display',serif;font-size:19px;line-height:1.2}
+.item p{font-size:12px;color:#5A7A9A;line-height:1.5;margin-top:4px}
+.prices{display:flex;gap:24px;flex-shrink:0;text-align:right}
+.prices div{width:90px}
+.prices b{display:block;font-size:15px;color:#1A2F4A}
+.prices small{display:block;font-size:11px;color:#5A7A9A;margin-top:2px}
+.single-price{text-align:right;flex-shrink:0}
+.single-price b{font-size:17px}
+.single-price small{display:block;font-size:11px;color:#5A7A9A;margin-top:2px}
+.tag{display:inline-block;background:#E8F0F7;color:#1A2F4A;font-size:10px;font-weight:700;letter-spacing:1px;padding:3px 8px;border-radius:10px;margin-bottom:6px}
+.note{max-width:820px;margin:0 auto 30px;padding:0 20px;font-size:11px;color:#8A9AA8;text-align:center;line-height:1.6}
+@media(max-width:650px){.hero h1{font-size:52px;letter-spacing:8px}.list-head span,.prices div{width:76px}.prices{gap:12px}.item h3{font-size:17px}.prices b{font-size:13px}}
+.footer{max-width:820px;margin:0 auto 24px;text-align:center;background:#1A2F4A;color:#fff;padding:26px;border-radius:20px}
+.footer a{display:inline-block;background:#fff;color:#1A2F4A;padding:12px 26px;border-radius:30px;text-decoration:none;font-weight:700;margin-top:14px}
+.btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+.btns a{margin:0}
+</style>
+</head>
+<body>
+<div class="hero">
+<h1>KAVA</h1>
+<p>PRICES IN LBP • CALORIES IN KCAL</p>
+<span>FRESH DAILY • MADE TO ORDER</span>
+</div>
+<div class="sticky">
+<div class="main-tabs">
+<button class="active" onclick="showMain('food',this)">FOOD<small>Appetizers • Salads • Sandwiches</small></button>
+<button onclick="showMain('drinks',this)">DRINKS<small>Coffee • Frappés • Shakes</small></button>
+</div>
+<div class="sub-tabs show" id="foodSub">
+<button class="active" onclick="filterItems('appetizers',this)">Appetizers</button>
+<button onclick="filterItems('salads',this)">Salads</button>
+<button onclick="filterItems('sandwiches',this)">Sandwiches</button>
+<button onclick="filterItems('bruschetta',this)">Bruschetta</button>
+</div>
+<div class="sub-tabs" id="drinkSub">
+<button class="active" onclick="filterItems('pure',this)">Pure Coffee</button>
+<button onclick="filterItems('hot',this)">Hot Classics</button>
+<button onclick="filterItems('iced',this)">Iced Classics</button>
+<button onclick="filterItems('frappes',this)">Frappés</button>
+<button onclick="filterItems('shakes',this)">Milkshakes</button>
+<button onclick="filterItems('refreshers',this)">Refreshers</button>
+<button onclick="filterItems('protein',this)">Protein & Fit</button>
+<button onclick="filterItems('tea',this)">Tea</button>
+<button onclick="filterItems('extras',this)">Syrups & Extras</button>
+</div>
+</div>
+<div class="section-title"><h2 id="catTitle">Appetizers</h2><p id="catDesc">Fresh Daily • Made To Order</p></div>
+<div id="menuGrid"></div>
+<p class="note">Calorie values are estimates based on standard recipe build - see full breakdown for methodology.</p>
+<div class="footer">
+<h3 style="font-family:'Playfair Display',serif;font-size:24px">KAVA ☕</h3>
+<p style="margin-top:10px;opacity:.9;line-height:1.7">📍 Tyre Seaside, Lebanon<br>Fresh Daily • Made To Order</p>
+<div class="btns">
+<a href="https://instagram.com/kavacoffeeandmore">📸 @kavacoffeeandmore</a>
+<a href="https://www.google.com/maps?q=Kava+Tyre+Seaside" style="background:#E8F0F7">📍 DIRECTIONS</a>
+</div>
+<p style="font-size:11px;opacity:.6;margin-top:14px">@kavacoffeeandmore</p>
+</div>
+<script>
+const titles={
+appetizers:['Appetizers','Fresh Daily • Made To Order'],
+salads:['Salads','Fresh & Healthy'],
+sandwiches:['Sandwiches','Ciabatta or Brown Bread'],
+bruschetta:['Bruschetta','Fresh & Crispy'],
+pure:['Pure Coffee','Pure • Strong • Real'],
+hot:['Hot Classics','Warm & Comforting'],
+iced:['Iced Classics','Cold & Refreshing'],
+frappes:['Frappés','Blended & Icy'],
+shakes:['Milkshakes','Thick & Creamy'],
+refreshers:['Refreshers','Fresh & Sparkling'],
+protein:['Protein & Fit','High Protein • Low Sugar'],
+tea:['Tea','Hot & Iced'],
+extras:['Syrups, Sauces & Extras','Customize Your Drink']
+};
+const items=[
+{cat:'appetizers',name:'Fig & Chèvre Crostini',desc:'10 pieces • ~590 kcal • 20g protein',price:'585,000 LBP',single:true},
+{cat:'appetizers',name:'Turkey Caprese Crostini',desc:'10 pieces • ~670 kcal • 18g protein',price:'630,000 LBP',single:true},
+{cat:'salads',name:'Chicken Caesar Salad',desc:'700 kcal • 45g protein',price:'1,260,000 LBP',single:true},
+{cat:'salads',name:'Chicken Avocado Salad',desc:'420 kcal • 54g protein',price:'1,350,000 LBP',single:true},
+{cat:'salads',name:'Greek Salad',desc:'220 kcal • 32g protein',price:'900,000 LBP',single:true},
+{cat:'salads',name:'Goat Cheese Salad',desc:'410 kcal • 27g protein',price:'1,260,000 LBP',single:true},
+{cat:'sandwiches',name:'Halloumi Sandwich',desc:'Ciabatta 625 kcal / Brown 610 kcal • 22g protein',price:'900,000 LBP',single:true},
+{cat:'sandwiches',name:'Turkey Pesto Sandwich',desc:'Ciabatta 400 kcal / Brown 350 kcal • 16g protein',price:'855,000 LBP',single:true},
+{cat:'sandwiches',name:'Chicken Avocado Sandwich',desc:'Ciabatta 675 kcal / Brown 650 kcal • 45g protein',price:'1,080,000 LBP',single:true},
+{cat:'bruschetta',name:'Bruschetta Salmon',desc:'270 kcal • 44g protein',price:'1,350,000 LBP',single:true},
+{cat:'bruschetta',name:'Bruschetta Caprese',desc:'260 kcal • 24g protein',price:'900,000 LBP',single:true},
+{cat:'bruschetta',name:'Bruschetta Avocado & Eggs',desc:'400 kcal • 17g protein',price:'810,000 LBP',single:true},
+{cat:'bruschetta',name:'Bruschetta Ashta',desc:'275 kcal • 12g protein',price:'990,000 LBP',single:true},
+{cat:'pure',name:'Espresso — Single',desc:'2 kcal',price:'200,000 LBP',single:true},
+{cat:'pure',name:'Espresso — Doppio',desc:'4 kcal',price:'250,000 LBP',single:true},
+{cat:'pure',name:'Longo',desc:'4 kcal',price:'250,000 LBP',single:true},
+{cat:'pure',name:'Espresso Macchiato',desc:'13 kcal',price:'300,000 LBP',single:true},
+{cat:'pure',name:'Americano',desc:'4 kcal / 6 kcal',priceS:'300,000',priceM:'350,000',calS:'4 kcal',calM:'6 kcal'},
+{cat:'pure',name:'American Coffee',desc:'6 kcal / 6 kcal',priceS:'300,000',priceM:'350,000',calS:'6 kcal',calM:'6 kcal'},
+{cat:'pure',name:'V60',desc:'2 kcal / 2 kcal',priceS:'350,000',priceM:'400,000',calS:'2 kcal',calM:'2 kcal'},
+{cat:'pure',name:'French Press',desc:'2 kcal / 2 kcal',priceS:'300,000',priceM:'350,000',calS:'2 kcal',calM:'2 kcal'},
+{cat:'hot',name:'Flat White',desc:'~130 kcal',price:'450,000 LBP',single:true},
+{cat:'hot',name:'Latte',desc:'276 kcal / 380 kcal',priceS:'450,000',priceM:'550,000',calS:'276 kcal',calM:'380 kcal'},
+{cat:'hot',name:'Cappuccino',desc:'197 kcal / 252 kcal',priceS:'450,000',priceM:'550,000',calS:'197 kcal',calM:'252 kcal'},
+{cat:'hot',name:'Hot Double Shot',desc:'386 kcal / 495 kcal',priceS:'500,000',priceM:'600,000',calS:'386 kcal',calM:'495 kcal'},
+{cat:'hot',name:'Toffeenut Latte',desc:'278 kcal / 360 kcal',priceS:'550,000',priceM:'700,000',calS:'278 kcal',calM:'360 kcal'},
+{cat:'hot',name:'Mocha',desc:'335 kcal / 438 kcal',priceS:'550,000',priceM:'650,000',calS:'335 kcal',calM:'438 kcal'},
+{cat:'hot',name:'White Mocha',desc:'335 kcal / 438 kcal',priceS:'550,000',priceM:'650,000',calS:'335 kcal',calM:'438 kcal'},
+{cat:'hot',name:'Caramel Macchiato',desc:'291 kcal / 333 kcal',priceS:'500,000',priceM:'600,000',calS:'291 kcal',calM:'333 kcal'},
+{cat:'hot',name:'Hot Kava',desc:'384 kcal / 543 kcal',priceS:'550,000',priceM:'700,000',calS:'384 kcal',calM:'543 kcal',tag:'SIGNATURE'},
+{cat:'hot',name:'Hot Chocolate',desc:'301 kcal / 490 kcal',priceS:'550,000',priceM:'700,000',calS:'301 kcal',calM:'490 kcal'},
+{cat:'hot',name:'Matcha — Hot',desc:'245 kcal / 332 kcal',priceS:'550,000',priceM:'700,000',calS:'245 kcal',calM:'332 kcal'},
+{cat:'iced',name:'Iced Latte',desc:'85 kcal / 103 kcal',priceS:'400,000',priceM:'500,000',calS:'85 kcal',calM:'103 kcal'},
+{cat:'iced',name:'Iced Spanish Latte',desc:'203 kcal / 248 kcal',priceS:'450,000',priceM:'600,000',calS:'203 kcal',calM:'248 kcal'},
+{cat:'iced',name:'Iced White Mocha',desc:'203 kcal / 248 kcal',priceS:'450,000',priceM:'600,000',calS:'203 kcal',calM:'248 kcal'},
+{cat:'iced',name:'Iced Mocha',desc:'203 kcal / 248 kcal',priceS:'450,000',priceM:'600,000',calS:'203 kcal',calM:'248 kcal'},
+{cat:'iced',name:'Iced Toffeenut Latte',desc:'176 kcal / 210 kcal',priceS:'450,000',priceM:'600,000',calS:'176 kcal',calM:'210 kcal'},
+{cat:'iced',name:'Iced Caramel Macchiato',desc:'199 kcal / 203 kcal',priceS:'450,000',priceM:'600,000',calS:'199 kcal',calM:'203 kcal'},
+{cat:'iced',name:'Double Shot Iced Shaken',desc:'154 kcal / 168 kcal',priceS:'450,000',priceM:'600,000',calS:'154 kcal',calM:'168 kcal'},
+{cat:'iced',name:'Iced Chocolate',desc:'249 kcal / 315 kcal',priceS:'550,000',priceM:'700,000',calS:'249 kcal',calM:'315 kcal'},
+{cat:'iced',name:'Matcha — Iced',desc:'140 kcal / 183 kcal',priceS:'550,000',priceM:'700,000',calS:'140 kcal',calM:'183 kcal'},
+{cat:'iced',name:'Iced Kava',desc:'229 kcal / 277 kcal',priceS:'550,000',priceM:'700,000',calS:'229 kcal',calM:'277 kcal',tag:'SIGNATURE'},
+{cat:'frappes',name:'Caramel',desc:'384 kcal / 445 kcal',priceS:'500,000',priceM:'600,000',calS:'384 kcal',calM:'445 kcal'},
+{cat:'frappes',name:'Mocha',desc:'367 kcal / 491 kcal',priceS:'500,000',priceM:'600,000',calS:'367 kcal',calM:'491 kcal'},
+{cat:'frappes',name:'White Mocha',desc:'312 kcal / 436 kcal',priceS:'500,000',priceM:'600,000',calS:'312 kcal',calM:'436 kcal'},
+{cat:'frappes',name:'Hazelnut',desc:'323 kcal / 425 kcal',priceS:'500,000',priceM:'600,000',calS:'323 kcal',calM:'425 kcal'},
+{cat:'frappes',name:'Vanilla',desc:'325 kcal / 425 kcal',priceS:'500,000',priceM:'600,000',calS:'325 kcal',calM:'425 kcal'},
+{cat:'frappes',name:'Espresso',desc:'293 kcal / 360 kcal',priceS:'500,000',priceM:'600,000',calS:'293 kcal',calM:'360 kcal'},
+{cat:'frappes',name:'Dulce de Leche',desc:'385 kcal / 434 kcal',priceS:'600,000',priceM:'700,000',calS:'385 kcal',calM:'434 kcal'},
+{cat:'frappes',name:'Toffeenut',desc:'323 kcal / 425 kcal',priceS:'500,000',priceM:'600,000',calS:'323 kcal',calM:'425 kcal'},
+{cat:'frappes',name:'Kava Frappé',desc:'490 kcal / 673 kcal',priceS:'600,000',priceM:'700,000',calS:'490 kcal',calM:'673 kcal',tag:'SIGNATURE'},
+{cat:'shakes',name:'Lotus',desc:'611 kcal / 898 kcal',priceS:'450,000',priceM:'550,000',calS:'611 kcal',calM:'898 kcal'},
+{cat:'shakes',name:'Oreo',desc:'571 kcal / 778 kcal',priceS:'450,000',priceM:'550,000',calS:'571 kcal',calM:'778 kcal'},
+{cat:'shakes',name:'Chocolate',desc:'442 kcal / 588 kcal',priceS:'600,000',priceM:'750,000',calS:'442 kcal',calM:'588 kcal'},
+{cat:'shakes',name:'Vanilla',desc:'257 kcal / 309 kcal',priceS:'450,000',priceM:'550,000',calS:'257 kcal',calM:'309 kcal'},
+{cat:'shakes',name:'Strawberry',desc:'422 kcal / 545 kcal',priceS:'600,000',priceM:'750,000',calS:'422 kcal',calM:'545 kcal'},
+{cat:'shakes',name:'Caramel',desc:'376 kcal / 478 kcal',priceS:'450,000',priceM:'550,000',calS:'376 kcal',calM:'478 kcal'},
+{cat:'shakes',name:'Kava Milkshake',desc:'551 kcal / 728 kcal',priceS:'650,000',priceM:'800,000',calS:'551 kcal',calM:'728 kcal',tag:'SIGNATURE'},
+{cat:'refreshers',name:'Strawberry Sparkle',desc:'224 kcal / 281 kcal',priceS:'500,000',priceM:'650,000',calS:'224 kcal',calM:'281 kcal'},
+{cat:'refreshers',name:'Lemon Mint Breeze',desc:'222 kcal / 285 kcal',priceS:'500,000',priceM:'650,000',calS:'222 kcal',calM:'285 kcal'},
+{cat:'refreshers',name:'Orange Mango',desc:'92 kcal / 110 kcal',priceS:'500,000',priceM:'650,000',calS:'92 kcal',calM:'110 kcal'},
+{cat:'refreshers',name:'Blueberry Lemonade',desc:'254 kcal / 317 kcal',priceS:'650,000',priceM:'750,000',calS:'254 kcal',calM:'317 kcal'},
+{cat:'protein',name:'Protein Shake',desc:'Vanilla, Chocolate or Coffee build • 213-260 kcal • 31g protein / 244-300 kcal • 42g protein',priceS:'450,000',priceM:'600,000',calS:'31g protein',calM:'42g protein',tag:'HIGH PROTEIN'},
+{cat:'protein',name:'Low Sugar Iced Coffee',desc:'Vanilla or Caramel • 96 kcal / 102 kcal',priceS:'400,000',priceM:'550,000',calS:'96 kcal',calM:'102 kcal',tag:'LOW SUGAR'},
+{cat:'tea',name:'Hot Tea — Flavored',desc:'2 kcal',price:'350,000 LBP',single:true},
+{cat:'tea',name:'Iced Tea Classic',desc:'Unsweetened • ~9 kcal • 99 kcal / 135 kcal',priceS:'400,000',priceM:'550,000',calS:'99 kcal',calM:'135 kcal'},
+{cat:'tea',name:'Iced Tea — Lemonade',desc:'184 kcal / 273 kcal',priceS:'400,000',priceM:'550,000',calS:'184 kcal',calM:'273 kcal'},
+{cat:'tea',name:'Iced Tea — Peach or Mango',desc:'99 kcal / 132 kcal',priceS:'400,000',priceM:'550,000',calS:'99 kcal',calM:'132 kcal'},
+{cat:'extras',name:'Any syrup pump (Monin)',desc:'~25 kcal per pump',price:'100,000 LBP',single:true},
+{cat:'extras',name:'Any sauce / purée pump (Monin)',desc:'~35 kcal per 15ml pump',price:'100,000 LBP',single:true},
+{cat:'extras',name:'Extra Shot',desc:'',price:'50,000 LBP',single:true},
+{cat:'extras',name:'Whipped Cream',desc:'~50 kcal',price:'50,000 LBP',single:true},
+{cat:'extras',name:'Caramel / Chocolate Drizzle',desc:'~20 kcal',price:'100,000 LBP',single:true},
+{cat:'extras',name:'Milk Alternatives',desc:'Oat, Almond, Soya, Coconut — calories vary',price:'150,000 LBP',single:true},
+];
+let cur='appetizers';
+function render(){
+document.getElementById('catTitle').innerText=titles[cur][0];
+document.getElementById('catDesc').innerText=titles[cur][1];
+let list=items.filter(i=>i.cat===cur);
+let hasSize=list.some(i=>!i.single);
+let head=hasSize?`<div class="list-head"><span>SMALL</span><span>MEDIUM</span></div>`:'';
+document.getElementById('menuGrid').innerHTML='<div class="list">'+head+list.map(i=>{
+if(i.single) return `<div class="item"><div><h3>${i.name}</h3><p>${i.desc}</p></div><div class="single-price"><b>${i.price}</b></div></div>`;
+return `<div class="item"><div>${i.tag?`<span class="tag">${i.tag}</span><br>`:''}<h3>${i.name}</h3><p>${i.desc}</p></div><div class="prices"><div><b>${i.priceS}</b><small>${i.calS}</small></div><div><b>${i.priceM}</b><small>${i.calM}</small></div></div></div>`;
+}).join('')+'</div>';
+}
+function filterItems(c,b){cur=c;let p=b.parentElement.id;document.querySelectorAll('#'+p+' button').forEach(x=>x.classList.remove('active'));b.classList.add('active');render()}
+function showMain(main,btn){
+document.querySelectorAll('.main-tabs button').forEach(x=>x.classList.remove('active'));btn.classList.add('active');
+document.getElementById('foodSub').classList.remove('show');document.getElementById('drinkSub').classList.remove('show');
+if(main==='food'){document.getElementById('foodSub').classList.add('show');cur='appetizers';document.querySelectorAll('#foodSub button').forEach((x,i)=>x.classList.toggle('active',i===0));}
+else{document.getElementById('drinkSub').classList.add('show');cur='pure';document.querySelectorAll('#drinkSub button').forEach((x,i)=>x.classList.toggle('active',i===0));}
+render();
+}
+render();
+</script>
+</body>
+</html>
